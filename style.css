@@ -1,0 +1,97 @@
+body {
+    background-color: #FEFAEF;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.welcome-container {
+    width: 55vw;
+    height: 50vh;
+    border-radius: 16px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: flex;
+}
+
+.logo {
+    padding-top: 16px;
+}
+
+.navigation {
+    width: 200px;
+    background-color: #27355C;
+    height: 100%;
+    border-radius: 16px 0 0 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.navigation ul {
+    font-size: 24px;
+    padding-bottom: 90px;
+}
+
+.navigation ul li a {
+    color: white;
+}
+
+.idendification {
+    position: absolute;
+    width: 8px;
+    height: 40px;
+    background-color: white;
+    top: 38px;
+    left: 0;
+    display: grid;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.main-container {
+    border-radius: 0 16px 16px 0;
+    width: 100%;
+    background: url(./img/brainbg.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+
+}
+
+.welcome-text {
+    text-align: center;
+    padding: 125px 0 8px 0;
+    font-size: 32px;
+    
+}
+
+.welcome-question {
+    font-size: 20px;
+}
+
+.button {
+    position: absolute;
+    bottom: 24px;
+    right: 32px;
+}
+
