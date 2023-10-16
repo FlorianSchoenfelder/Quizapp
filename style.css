@@ -47,7 +47,42 @@ body {
     top: 38px;
     left: 0;
     display: grid;
+    transition: 0.3s;
 }
+
+.identificationCSS {
+    position: absolute;
+    width: 8px;
+    height: 40px;
+    background-color: white;
+    top: 87px !important;
+    left: 0;
+    display: grid;
+    transition: 0.3s;
+}
+
+.identificationJS {
+    position: absolute;
+    width: 8px;
+    height: 40px;
+    background-color: white;
+    top: 139px !important;
+    left: 0;
+    display: grid;
+    transition: 0.3s;
+}
+
+.identificationJAVA {
+    position: absolute;
+    width: 8px;
+    height: 40px;
+    background-color: white;
+    top: 191px !important;
+    left: 0;
+    display: grid;
+    transition: 0.3s;
+}
+
 
 
 
