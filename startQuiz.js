@@ -1,4 +1,4 @@
-let questions = [
+let HTMLquestions = [
     {
         "question": "Wer hat HTML erfunden",
         "answer1": "Bruno Mars",
@@ -40,3 +40,18 @@ let questions = [
         "rightanswer": 2
     }
 ]
+
+function startQuiz(identifier) {
+    if (identifier === 1) {
+        startHTMLQuiz();
+    }
+    if (identifier === 2) {
+        startCSSQuiz();
+    }
+    if (identifier === 3) {
+        startJavascriptQuiz();
+    }
+    if (identifier === 4) {
+        startJavaQuiz();
+    }
+}

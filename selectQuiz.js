@@ -26,19 +26,19 @@ function slideToJava() {
     document.getElementById('identificationCSS').classList.remove('identificationCSS');
 }
 
-function startQuiz(x) {
+function chooseQuiz(language, identifier) {
     let text = document.getElementById('main-container');
     text.innerHTML = /*html*/`
     <div class="welcome-text">
             <span>Welcome to</span><br>
-            <span>The Awesome ${x} Quiz</span>
+            <span>The Awesome ${language} Quiz</span>
         </div>
         <div class="welcome-question">
             <span>Ready for the Challenge?</span>
         </div>
 
         <div class="button">
-            <button onclick="startJavaQuiz()" type="button" class="btn btn-primary btn-lg">Start Now</button>
+            <button onclick="startQuiz(${identifier})" type="button" class="btn btn-primary btn-lg">Start Now</button>
         </div>
 `;
 }
