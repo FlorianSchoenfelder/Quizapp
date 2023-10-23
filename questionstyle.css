@@ -76,11 +76,11 @@
 }
 
 .nextButton {
-    background: url(./img/next.svg);
+    background: url(./img/next.svg) !important;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    background-color: #DADFF3;
+    background-color: #DADFF3 !important;
     border-radius: 100%;
     border: none;
     width: 40px;
