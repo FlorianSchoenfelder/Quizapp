@@ -44,7 +44,7 @@ let HTMLquestions = [
 let currentQuestion = 0;
 let counterRightAnswer = 0;
 let AudioSuccess = new Audio('audio/success.mp3');
-let AudioFail = new Audio('/audio/fail.mp3');
+let AudioFail = new Audio('audio/fail.mp3');
 
 function startHTMLQuiz() {
     if (currentQuestion >= HTMLquestions.length) {
