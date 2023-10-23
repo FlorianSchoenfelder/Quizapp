@@ -1,5 +1,5 @@
 body {
-    background-color: #FEFAEF;
+    background-color: #FEFAEF !important;
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -90,22 +90,6 @@ body {
     transition: 0.3s;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .main-container {
     border-radius: 0 16px 16px 0;
     width: 100%;
@@ -117,14 +101,12 @@ body {
     align-items: center;
     flex-direction: column;
     position: relative;
-
 }
 
 .welcome-text {
     text-align: center;
     padding: 125px 0 8px 0;
-    font-size: 32px;
-    
+    font-size: 32px;    
 }
 
 .welcome-question {
