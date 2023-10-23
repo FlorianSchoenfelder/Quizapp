@@ -12,3 +12,4 @@ function startQuiz(identifier) {
         startJavaQuiz();
     }
 }
+
