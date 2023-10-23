@@ -42,4 +42,3 @@ function chooseQuiz(language, identifier) {
         </div>
 `;
 }
-
