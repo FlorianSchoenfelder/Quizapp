@@ -56,10 +56,12 @@ function startHTMLQuiz() {
         document.getElementById('currentquestion').innerHTML = currentQuestion + 1;
         document.getElementById('allquestion').innerHTML = HTMLquestions.length;
 
-        let percent = (currentQuestion + 1) / HTMLquestions.length;
+        let percent = currentQuestion / HTMLquestions.length;
         percent = Math.round(percent * 100);
         document.getElementById('progress-bar').innerHTML = `${percent} %`;
         document.getElementById('progress-bar').style = `width: ${percent}%;`;
+
+        
     }
 }
 
@@ -122,6 +124,11 @@ function answer(selcetedAnswer) {
         AudioFail.play();
     }
     document.getElementById('nextButton').disabled = false;
+
+    let percent = (currentQuestion + 1) / HTMLquestions.length;
+        percent = Math.round(percent * 100);
+        document.getElementById('progress-bar').innerHTML = `${percent} %`;
+        document.getElementById('progress-bar').style = `width: ${percent}%;`;
 }
 
 function nextQuestion() {

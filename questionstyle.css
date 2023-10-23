@@ -5,6 +5,7 @@
     flex-direction: column;
     align-items: center;
     background-color: #F7F7F7;
+    border-radius: 0px 16px 16px 0px;
 }
 
 .question {
@@ -99,6 +100,8 @@
     background-color: #F7F7F7;
     justify-content: space-between;
     padding: 45px 0px 30px 0px;
+    border-radius: 0px 16px 16px 0px;
+
 }
 
 .endText {
