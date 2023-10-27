@@ -1,74 +1,32 @@
-let CSSquestions = [
-    {
-        "question": "What can we do with CSS?",
-        "answer1": "Give Code a Function",
-        "answer2": "Make the Website responsive",
-        "answer3": "Styling HTML Elements",
-        "answer4": "Nothing",
-        "rightanswer": 3
-    },
-    {
-        "question": "What exactly means CSS?",
-        "answer1": "Convert Single Styling",
-        "answer2": "Cascading Style Sheet",
-        "answer3": "Code Super Simple",
-        "answer4": "Cheat simplify signature",
-        "rightanswer": 2
-    },
-    {
-        "question": "How can i transform an html element bold?",
-        "answer1": "text-style",
-        "answer2": "font-weight",
-        "answer3": "text-transform",
-        "answer4": "font-style",
-        "rightanswer": 2
-    },
-    {
-        "question": "Which tag do we use to get space between the Element and border?",
-        "answer1": "padding",
-        "answer2": "margin",
-        "answer3": "border",
-        "answer4": "width",
-        "rightanswer": 1
-    },
-    {
-        "question": "What CSS property is used to adjust the font size of a text element in HTML?",
-        "answer1": "text-style",
-        "answer2": "font-family",
-        "answer3": "font-size",
-        "answer4": "text.color",
-        "rightanswer": 3
-    },
-    {
-        "question": "What CSS property is used to give the element a background color?",
-        "answer1": "background-color",
-        "answer2": "color",
-        "answer3": "style",
-        "answer4": "text.color",
-        "rightanswer": 1
-    }
-];
 
-function startCSSQuiz() {
-    if (currentQuestion >= CSSquestions.length) {
+let choosenQuiz = []; 
+let currentQuestions = [];
+let currentQuestion = 0;
+let counterRightAnswer = 0;
+let AudioSuccess = new Audio('audio/success.mp3');
+let AudioFail = new Audio('audio/fail.mp3');
+
+function startQuiz() {
+    if (currentQuestion >= currentQuestions.length) {
         //Init endscreen
         loadEndscreen();
     } else {
-        let question = CSSquestions[currentQuestion];
-        document.getElementById('main-container').innerHTML = startCSSQuizText(question);
+        let question = currentQuestions[currentQuestion];
+        document.getElementById('main-container').innerHTML = startQuizText(question);
         document.getElementById('currentquestion').innerHTML = currentQuestion + 1;
-        document.getElementById('allquestion').innerHTML = CSSquestions.length;
+        document.getElementById('allquestion').innerHTML = currentQuestions.length;
 
-        let percent = currentQuestion / CSSquestions.length;
+        let percent = currentQuestion / currentQuestions.length;
         percent = Math.round(percent * 100);
         document.getElementById('progress-bar').innerHTML = `${percent} %`;
         document.getElementById('progress-bar').style = `width: ${percent}%;`;
 
-        
+
     }
+
 }
 
-function startCSSQuizText(question) {
+function startQuizText(question) {
     return /*html*/`
     <div class="questionContainer">
             <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
@@ -77,26 +35,26 @@ function startCSSQuizText(question) {
             <div class="question" id="question">
                 <h3>${question['question']}</h3>
             </div>
-            <div onclick="answer('answer_1')" class="card mb-3 w-75">
-                <div class="card-body" id="answer_1">
+            <div onclick="answer('answer_1')" class="card mb-3 w-75 ">
+                <div class="card-body mobile-response" id="answer_1">
                     <div class="answer">A</div>
                     ${question['answer1']}
                 </div>
             </div>
             <div onclick="answer('answer_2')" class="card mb-3 w-75">
-                <div class="card-body" id="answer_2">
+                <div class="card-body mobile-response" id="answer_2">
                     <div class="answer">B</div>
                     ${question['answer2']}
                 </div>
             </div>
             <div onclick="answer('answer_3')" class="card mb-3 w-75">
-                <div class="card-body" id="answer_3">
+                <div class="card-body mobile-response" id="answer_3">
                     <div class="answer">C</div>
                     ${question['answer3']}
                 </div>
             </div>
             <div onclick="answer('answer_4')" class="card mb-3 w-75">
-                <div class="card-body" id="answer_4">
+                <div class="card-body mobile-response" id="answer_4">
                     <div class="answer">D</div>
                     ${question['answer4']}
                 </div>
@@ -113,31 +71,44 @@ function startCSSQuizText(question) {
 }
 
 function answer(selcetedAnswer) {
-    let question = CSSquestions[currentQuestion];
+    let question = currentQuestions[currentQuestion];
     let selcetedAnswerAsNumber = selcetedAnswer.slice(-1);
     let rightanswerID = `answer_${question['rightanswer']}`;
+
+
 
     if (selcetedAnswerAsNumber == question['rightanswer']) {
         document.getElementById(selcetedAnswer).parentNode.classList.add('bg-success');
         AudioSuccess.play();
         counterRightAnswer++;
+        document.getElementById('answer_1').parentNode.classList.add('disable-button');
+        document.getElementById('answer_2').parentNode.classList.add('disable-button');
+        document.getElementById('answer_3').parentNode.classList.add('disable-button');
+        document.getElementById('answer_4').parentNode.classList.add('disable-button');
     } else {
         document.getElementById(selcetedAnswer).parentNode.classList.add('bg-danger');
         document.getElementById(rightanswerID).parentNode.classList.add('bg-success');
         AudioFail.play();
+        document.getElementById('answer_1').parentNode.classList.add('disable-button');
+        document.getElementById('answer_2').parentNode.classList.add('disable-button');
+        document.getElementById('answer_3').parentNode.classList.add('disable-button');
+        document.getElementById('answer_4').parentNode.classList.add('disable-button');
     }
     document.getElementById('nextButton').disabled = false;
 
-    let percent = (currentQuestion + 1) / CSSquestions.length;
-        percent = Math.round(percent * 100);
-        document.getElementById('progress-bar').innerHTML = `${percent} %`;
-        document.getElementById('progress-bar').style = `width: ${percent}%;`;
+    let percent = (currentQuestion + 1) / currentQuestions.length;
+    percent = Math.round(percent * 100);
+    document.getElementById('progress-bar').innerHTML = `${percent} %`;
+    document.getElementById('progress-bar').style = `width: ${percent}%;`;
 }
 
 function nextQuestion() {
     currentQuestion++;
-    startCSSQuiz();
+    startQuiz();
 }
+
+
+
 
 function loadEndscreen() {
     document.getElementById('main-container').innerHTML = /*html*/`
@@ -149,10 +120,10 @@ function loadEndscreen() {
                 <img src="./img/brain result.png" alt="">
                 <span>
                     <b>Complete</b> <br>
-                    <b>CSS Quiz</b>
+                    <b>HTML Quiz</b>
                 </span>                
             </div>
-            <div class="result">Your Score ${counterRightAnswer}/${CSSquestions.length}</div>
+            <div class="result">Your Score ${counterRightAnswer}/${currentQuestions.length}</div>
             <div class="replay">
                 <button onclick="restartQuiz()" class="btn btn-primary">Replay</button>
             </div>
@@ -163,5 +134,5 @@ function loadEndscreen() {
 function restartQuiz() {
     currentQuestion = 0;
     counterRightAnswer = 0;
-    chooseQuiz('CSS', 2);
+    chooseQuiz(choosenQuiz);
 }

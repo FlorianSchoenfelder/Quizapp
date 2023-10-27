@@ -117,3 +117,8 @@
     font-size: 24px;
     color: #ED8839;
 }
+
+.disable-button {
+    pointer-events: none !important;
+    cursor: none !important;
+}
