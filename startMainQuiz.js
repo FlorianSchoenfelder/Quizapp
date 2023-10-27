@@ -1,5 +1,4 @@
-
-let choosenQuiz = []; 
+let choosenQuiz = [];
 let currentQuestions = [];
 let currentQuestion = 0;
 let counterRightAnswer = 0;
@@ -7,23 +6,31 @@ let AudioSuccess = new Audio('audio/success.mp3');
 let AudioFail = new Audio('audio/fail.mp3');
 
 function startQuiz() {
-    if (currentQuestion >= currentQuestions.length) {
+    if (choosenQuiz === 'Java') {
+        alert('This Quiz is comming soon!')
+    }else{
+        if (currentQuestion >= currentQuestions.length) {
         //Init endscreen
         loadEndscreen();
     } else {
-        let question = currentQuestions[currentQuestion];
-        document.getElementById('main-container').innerHTML = startQuizText(question);
-        document.getElementById('currentquestion').innerHTML = currentQuestion + 1;
-        document.getElementById('allquestion').innerHTML = currentQuestions.length;
-
-        let percent = currentQuestion / currentQuestions.length;
-        percent = Math.round(percent * 100);
-        document.getElementById('progress-bar').innerHTML = `${percent} %`;
-        document.getElementById('progress-bar').style = `width: ${percent}%;`;
-
-
+        updateNextQuestion();
+        updateProgressBar();
     }
+    }
+}
 
+function updateNextQuestion() {
+    let question = currentQuestions[currentQuestion];
+    document.getElementById('main-container').innerHTML = startQuizText(question);
+    document.getElementById('currentquestion').innerHTML = currentQuestion + 1;
+    document.getElementById('allquestion').innerHTML = currentQuestions.length;
+}
+
+function updateProgressBar() {
+    let percent = currentQuestion / currentQuestions.length;
+    percent = Math.round(percent * 100);
+    document.getElementById('progress-bar').innerHTML = `${percent} %`;
+    document.getElementById('progress-bar').style = `width: ${percent}%;`;
 }
 
 function startQuizText(question) {
@@ -66,8 +73,7 @@ function startQuizText(question) {
                 </span>
                 <button onclick="nextQuestion()" class="nextButton" id="nextButton" disabled></button>
             </div>
-        </div>
-`;
+        </div>`;
 }
 
 function answer(selcetedAnswer) {
@@ -75,24 +81,10 @@ function answer(selcetedAnswer) {
     let selcetedAnswerAsNumber = selcetedAnswer.slice(-1);
     let rightanswerID = `answer_${question['rightanswer']}`;
 
-
-
     if (selcetedAnswerAsNumber == question['rightanswer']) {
-        document.getElementById(selcetedAnswer).parentNode.classList.add('bg-success');
-        AudioSuccess.play();
-        counterRightAnswer++;
-        document.getElementById('answer_1').parentNode.classList.add('disable-button');
-        document.getElementById('answer_2').parentNode.classList.add('disable-button');
-        document.getElementById('answer_3').parentNode.classList.add('disable-button');
-        document.getElementById('answer_4').parentNode.classList.add('disable-button');
+        updateRightQuestion(selcetedAnswer);
     } else {
-        document.getElementById(selcetedAnswer).parentNode.classList.add('bg-danger');
-        document.getElementById(rightanswerID).parentNode.classList.add('bg-success');
-        AudioFail.play();
-        document.getElementById('answer_1').parentNode.classList.add('disable-button');
-        document.getElementById('answer_2').parentNode.classList.add('disable-button');
-        document.getElementById('answer_3').parentNode.classList.add('disable-button');
-        document.getElementById('answer_4').parentNode.classList.add('disable-button');
+        updateFalseQuestion(selcetedAnswer, rightanswerID);
     }
     document.getElementById('nextButton').disabled = false;
 
@@ -102,13 +94,30 @@ function answer(selcetedAnswer) {
     document.getElementById('progress-bar').style = `width: ${percent}%;`;
 }
 
+function updateRightQuestion(selcetedAnswer) {
+    document.getElementById(selcetedAnswer).parentNode.classList.add('bg-success');
+    AudioSuccess.play();
+    counterRightAnswer++;
+    document.getElementById('answer_1').parentNode.classList.add('disable-button');
+    document.getElementById('answer_2').parentNode.classList.add('disable-button');
+    document.getElementById('answer_3').parentNode.classList.add('disable-button');
+    document.getElementById('answer_4').parentNode.classList.add('disable-button');
+}
+
+function updateFalseQuestion(selcetedAnswer, rightanswerID) {
+    document.getElementById(selcetedAnswer).parentNode.classList.add('bg-danger');
+    document.getElementById(rightanswerID).parentNode.classList.add('bg-success');
+    AudioFail.play();
+    document.getElementById('answer_1').parentNode.classList.add('disable-button');
+    document.getElementById('answer_2').parentNode.classList.add('disable-button');
+    document.getElementById('answer_3').parentNode.classList.add('disable-button');
+    document.getElementById('answer_4').parentNode.classList.add('disable-button');
+}
+
 function nextQuestion() {
     currentQuestion++;
     startQuiz();
 }
-
-
-
 
 function loadEndscreen() {
     document.getElementById('main-container').innerHTML = /*html*/`
@@ -127,8 +136,7 @@ function loadEndscreen() {
             <div class="replay">
                 <button onclick="restartQuiz()" class="btn btn-primary">Replay</button>
             </div>
-        </div>
-    `;
+        </div>`;
 }
 
 function restartQuiz() {

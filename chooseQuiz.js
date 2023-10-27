@@ -177,11 +177,12 @@ function chooseQuiz(language) {
         <div class="welcome-question">
             <span>Ready for the Challenge?</span>
         </div>
-
         <div class="button">
             <button onclick="startQuiz()" type="button" class="btn btn-primary btn-lg">Start Now</button>
-        </div>
-`;
+        </div>`;
 }
 
+function selectQuiz() {
+    alert('Please chose a Quiz before start! :)')
+}
 
